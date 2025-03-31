@@ -85,7 +85,11 @@ Geeklog IGDB/
 
 ## 🤝 Feito com carinho por
 
-- [@seu-nome](https://github.com/seu-usuario)
+- [@Mario Jamisson](https://github.com/MarioJamisson)
+- [@Maria Carolina](https://github.com/carolina03-ui)
+- [@Taissa Moreira](https://github.com/T-more-create)
+- [@Amanda Morais](https://github.com/Mandysan123)
+- [@Gabrielly Morais](https://github.com/gabrielymorais)
 
 ---
 
