@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Geeklog - Jogos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 40px;
+    }
+
+    .topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .topo a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .barra-busca {
+      text-align: center;
+      margin: 20px 0 40px 0;
+    }
+
+    .barra-busca input {
+      padding: 8px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .barra-busca button {
+      padding: 8px 12px;
+      background: #555;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .jogos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .detalhes-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 10px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .detalhes-btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topo">
+    <h1>🎮 Geeklog</h1>
+    {% if user.is_authenticated %}
+      <p>Olá, {{ user.username }} | <a href="{% url 'account_logout' %}">Sair</a></p>
+    {% else %}
+      <a href="{% url 'account_login' %}">Entrar</a>
+    {% endif %}
+  </div>
+
+  <form method="get" action="/" class="barra-busca">
+    <input type="text" name="q" placeholder="Buscar jogos..." value="{{ busca|default:'' }}">
+    <button type="submit">🔍</button>
+  </form>
+
+  <div class="jogos">
+    {% for jogo in jogos %}
+      <div class="card">
+        <h3>{{ jogo.name }}</h3>
+        {% if jogo.cover %}
+          <img src="https:{{ jogo.cover.url }}" alt="{{ jogo.name }}">
+        {% else %}
+          <p>(Sem imagem)</p>
+        {% endif %}
+        <a class="detalhes-btn" href="{% url 'igdb_detalhes' jogo.id %}">Ver detalhes</a>
+      </div>
+    {% endfor %}
+  </div>
+
+</body>
+</html>

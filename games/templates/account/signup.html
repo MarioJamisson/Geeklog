@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+      width: 320px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, button {
+      margin: 6px 0;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #4285F4;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #3367d6;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Criar Conta</h1>
+
+    <form method="POST" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <div class="login-link">
+      <p>Já tem conta? <a href="{% url 'account_login' %}">Entrar</a></p>
+    </div>
+  </div>
+</body>
+</html>

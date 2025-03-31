@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ jogo.name }}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 800px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      margin: auto;
+    }
+
+    h1 {
+      margin-bottom: 15px;
+    }
+
+    img {
+      max-width: 200px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    .review-box {
+      margin-top: 30px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .review {
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>{{ jogo.name }}</h1>
+
+    {% if jogo.cover %}
+      <img src="https:{{ jogo.cover.url }}" alt="{{ jogo.name }}">
+    {% endif %}
+
+    <p><strong>Gêneros:</strong> {{ jogo.genres|join:", " }}</p>
+    <p><strong>Desenvolvedoras:</strong> {{ jogo.companies|join:", " }}</p>
+
+    {% if jogo.first_release_date %}
+      <p><strong>Lançamento:</strong> {{ jogo.first_release_date }}</p>
+    {% endif %}
+
+    {% if jogo.aggregated_rating %}
+      <p><strong>Nota:</strong> {{ jogo.aggregated_rating|floatformat:1 }}/100</p>
+    {% endif %}
+
+    <p><strong>Resumo:</strong> {{ jogo.summary }}</p>
+
+    <div class="review-box">
+      <h2>Reviews</h2>
+
+      {% if reviews %}
+        {% for r in reviews %}
+          <div class="review">
+            <strong>{{ r.user.username }}</strong> ({{ r.created_at|date:"d/m/Y H:i" }})<br>
+            {{ r.texto }}
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>Sem reviews ainda.</p>
+      {% endif %}
+
+      {% if user.is_authenticated %}
+        <form method="post">
+          {% csrf_token %}
+          <textarea name="texto" rows="4" placeholder="Escreva sua review..."></textarea><br>
+          <button type="submit">Enviar</button>
+        </form>
+      {% else %}
+        <p><a href="{% url 'account_login' %}">Faça login</a> para deixar uma review.</p>
+      {% endif %}
+    </div>
+
+    <a href="/">← Voltar</a>
+  </div>
+</body>
+</html>

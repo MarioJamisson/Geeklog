@@ -1,0 +1,107 @@
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Entrar no Geeklog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+      width: 320px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    a.google-login {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #4285F4;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-bottom: 20px;
+    }
+
+    a.google-login img {
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, button {
+      margin: 6px 0;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #222;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #444;
+    }
+
+    .bottom-links {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .bottom-links a {
+      color: #4285F4;
+      text-decoration: none;
+    }
+
+    .bottom-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Entrar no Geeklog</h1>
+
+    <a href="{% provider_login_url 'google' %}" class="google-login">
+      <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo">
+      Entrar com Google
+    </a>
+
+    <form method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Entrar</button>
+    </form>
+
+    <div class="bottom-links">
+      <p>Esqueceu a senha? <a href="{% url 'account_reset_password' %}">Recuperar</a></p>
+      <p>Não tem conta? <a href="{% url 'account_signup' %}">Criar agora</a></p>
+    </div>
+  </div>
+</body>
+</html>
