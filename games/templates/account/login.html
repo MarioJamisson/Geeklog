@@ -87,11 +87,6 @@
   <div class="container">
     <h1>Entrar no Geeklog</h1>
 
-    <a href="{% provider_login_url 'google' %}" class="google-login">
-      <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo">
-      Entrar com Google
-    </a>
-
     <form method="POST" action="{% url 'account_login' %}">
       {% csrf_token %}
       {{ form.as_p }}

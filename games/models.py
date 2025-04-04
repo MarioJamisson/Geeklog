@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+#Classe definição de um novo tipo de objeto (Review), herdando de models.Model (Herança)
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     game_id = models.IntegerField()  # ID do jogo no IGDB

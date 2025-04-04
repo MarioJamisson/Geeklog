@@ -4,7 +4,7 @@ import django.db.models.deletion
 from django.conf import settings
 from django.db import migrations, models
 
-
+# Classe Migration que herda da estrutura de migração do Django (também um uso básico de POO)
 class Migration(migrations.Migration):
 
     initial = True

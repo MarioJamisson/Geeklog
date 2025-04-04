@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# ⚙️ Path é um objeto orientado a objetos (POO na prática)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-n=8i9ses0^x=y*mtm32rn=*npuwix+ljxvdbtsc=+9v%k7cfzh'
@@ -21,7 +22,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
 
     # App do projeto
     'games',

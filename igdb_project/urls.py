@@ -1,3 +1,6 @@
+# Este arquivo define os mapeamentos de URLs para views, encapsulando as rotas do projeto - exemplo de Abstração.
+
+
 from django.contrib import admin
 from django.urls import path, include
 
