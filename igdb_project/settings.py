@@ -1,13 +1,11 @@
 from pathlib import Path
 
-# ⚙️ Path é um objeto orientado a objetos (POO na prática)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-n=8i9ses0^x=y*mtm32rn=*npuwix+ljxvdbtsc=+9v%k7cfzh'
+SECRET_KEY = 'sua-chave-secreta-aqui'
 DEBUG = True
 ALLOWED_HOSTS = []
 
-# ✅ Aplicações instaladas
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -15,15 +13,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'django.contrib.sites',  # necessário para o allauth
+    'django.contrib.sites',
 
     # Allauth
     'allauth',
     'allauth.account',
+    
     'allauth.socialaccount',
+    #'allauth.socialaccount.providers.google',
 
-    # App do projeto
+    # Seu app
     'games',
 ]
 
@@ -33,10 +32,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-
-    # 🔥 Middleware necessário para o allauth
-    'allauth.account.middleware.AccountMiddleware',
-
+    'allauth.account.middleware.AccountMiddleware',  # <- necessário
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -46,18 +42,19 @@ ROOT_URLCONF = 'igdb_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # você pode colocar pastas de templates aqui
+        'DIRS': [BASE_DIR / 'templates'],  # <- Prioridade para seus templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',  # necessário para allauth
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'igdb_project.wsgi.application'
 
@@ -89,18 +86,16 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ✅ Allauth configs atualizadas
-AUTHENTICATION_BACKENDS = (
+# Allauth
+AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-)
+]
 
 SITE_ID = 1
+
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-# ✅ Novas configs recomendadas
-ACCOUNT_LOGIN_METHODS = {'username', 'email'}
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
