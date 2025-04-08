@@ -1,93 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+{% load static %}
 <head>
   <meta charset="UTF-8">
-  <title>Cadastro</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+  <title>Cadastro | Geeklog</title>
+  <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/geeko.svg' %}" type="image/svg">
 
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-      width: 320px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    input, button {
-      margin: 6px 0;
-      padding: 10px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      background: #4285F4;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    button:hover {
-      background: #3367d6;
-    }
-
-    .login-link {
-      text-align: center;
-      margin-top: 15px;
-    }
-
-    .login-link a {
-      color: #4285F4;
-      text-decoration: none;
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Criar Conta</h1>
+  <div class="signup-container">
+    <img src="{% static 'img/geeko.svg' %}" alt="Mascote Geeklog" class="logo">
+
+    <h1>
+      Preencha os dados abaixo para
+      efetuar o <span>Cadastro</span>
+    </h1>
 
     <form method="POST" action="{% url 'account_signup' %}">
       {% csrf_token %}
+      <input type="text" name="username" placeholder="Nome" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password1" placeholder="Senha" required>
+      <input type="password" name="password2" placeholder="Confirmar senha" required>
 
-      <label for="id_username">Usuário:</label>
-      <input type="text" id="id_username" name="username" required>
-
-      <label for="id_email">Email:</label>
-      <input type="email" id="id_email" name="email" required>
-
-      <label for="id_password1">Senha:</label>
-      <input type="password" id="id_password1" name="password1" required>
-
-      <label for="id_password2">Confirme a Senha:</label>
-      <input type="password" id="id_password2" name="password2" required>
-
-      <button type="submit">Cadastrar</button>
+      <button type="submit" class="btn-signup">CADASTRAR</button>
     </form>
-
-    <div class="login-link">
-      <p>Já tem conta? <a href="{% url 'account_login' %}">Entrar</a></p>
-    </div>
   </div>
+
+  <footer>
+    <p>JÁ POSSUI UMA CONTA? <a href="{% url 'account_login' %}">ENTRAR</a></p>
+  </footer>
 </body>
 </html>

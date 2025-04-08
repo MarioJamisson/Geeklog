@@ -1,100 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+{% load static %}
 <head>
   <meta charset="UTF-8">
-  <title>Entrar no Geeklog</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
+  <title>Login | Geeklog</title>
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/geeko.svg' %}" type="image/svg">
 
-    .container {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      width: 350px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 22px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    label {
-      text-align: left;
-      font-size: 14px;
-      margin-bottom: 5px;
-    }
-
-    input[type="text"],
-    input[type="password"] {
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    input[type="checkbox"] {
-      margin-right: 5px;
-    }
-
-    button {
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      background-color: #007bff;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .bottom-links {
-      margin-top: 15px;
-      font-size: 14px;
-      text-align: center;
-    }
-
-    .bottom-links a {
-      color: #007bff;
-      text-decoration: none;
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Entrar no Geeklog</h1>
+  <div class="login-container">
+    <img src="{% static 'img/geeko.svg' %}" alt="Mascote Geeklog" class="logo">
+
+    <h1>SEJA BEM VINDO AO <span>GEEKLOG</span></h1>
 
     <form method="POST" action="{% url 'account_login' %}">
       {% csrf_token %}
+      <input type="text" name="login" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Senha" required>
 
-      <label for="id_login">Nome de usuário:</label>
-      <input type="text" name="login" id="id_login" required>
+      <div class="recover">
 
-      <label for="id_password">Senha:</label>
-      <input type="password" name="password" id="id_password" required>
+        <a href= "{% url 'account_reset_password' %}"><span class="recover-color">Esqueceu sua senha?</span> Recuperar</a>
+      </div>
 
-      <label><input type="checkbox" name="remember"> Lembrar de Mim</label>
-
-      <button type="submit">Entrar</button>
+      <button type="submit" class="btn-login">ENTRAR</button>
     </form>
-
-    <div class="bottom-links">
-      <p><a href="{% url 'account_reset_password' %}">Esqueceu sua senha?</a></p>
-      <p>Não tem uma conta? <a href="{% url 'account_signup' %}">Cadastre-se</a></p>
-    </div>
   </div>
+  <footer>
+    <p>FAZER UM CADASTRO NO <a href="{% url 'account_signup' %}">GEEKLOG</a></p>
+  </footer>
 </body>
 </html>
