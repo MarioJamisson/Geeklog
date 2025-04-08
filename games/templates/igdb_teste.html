@@ -28,7 +28,7 @@
       <div class="topo">
         <h1>Geeklog</h1>
         {% if user.is_authenticated %}
-          <p>Olá, {{ user.username }} | <a href="{% url 'account_logout' %}">Sair</a></p>
+          <p class="ola-user">Olá, {{ user.username }} | <a href="{% url 'account_logout' %}">Sair</a></p>
         {% else %}
           <a href="{% url 'account_login' %}">Entrar</a>
         {% endif %}
@@ -45,7 +45,7 @@
         {% for jogo in jogos %}
           {% if jogo.cover %}
             <a href="{% url 'igdb_detalhes' jogo.id %}" class="capa-wrapper">
-              <img src="https:{{ jogo.cover.url|replace:'t_thumb|t_cover_big' }}" alt="{{ jogo.name }}">
+              <img src="https:{{ jogo.cover.url|replace:'t_thumb,t_cover_big' }}" alt="{{ jogo.name }}">
             </a>
           {% endif %}
         {% endfor %}

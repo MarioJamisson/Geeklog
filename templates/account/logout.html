@@ -1,59 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+{% load static %}
 <head>
   <meta charset="UTF-8">
   <title>Sair do Geeklog</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-    }
-
-    form button {
-      padding: 10px 20px;
-      background-color: #dc3545;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    form button:hover {
-      background-color: #c82333;
-    }
-
-    a {
-      display: inline-block;
-      margin-top: 15px;
-      text-decoration: none;
-      color: #007bff;
-    }
-  </style>
+  <link rel="stylesheet" href="{% static 'css/logout.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+25&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/geeko.svg' %}" type="image/svg">
 </head>
 <body>
   <div class="container">
+    <img src="{% static 'img/geeko-logout.svg' %}" alt="Geeko" class="logo">
     <h1>Tem certeza que deseja sair?</h1>
     <form method="POST" action="{% url 'account_logout' %}">
       {% csrf_token %}
       <button type="submit">Sair</button>
     </form>
-    <a href="/">Voltar para o início</a>
+    <a href="/">← Voltar para o início</a>
   </div>
 </body>
 </html>

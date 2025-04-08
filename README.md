@@ -37,18 +37,6 @@ python manage.py runserver
 
 ---
 
-## 🔐 Login com Google
-
-1. Vá para [Google Cloud Console](https://console.cloud.google.com)
-2. Crie um projeto e configure OAuth 2.0.
-3. Use esse redirect URI:
-```
-http://localhost:8000/accounts/google/login/callback/
-```
-4. Copie o Client ID e o Secret para cadastrar no admin do Django:
-   - `/admin/socialaccount/socialapp/`
-
----
 
 ## 👤 Login local (usuário/senha)
 
@@ -62,7 +50,7 @@ http://localhost:8000/accounts/signup/
 ## 🕹 Funcionalidades
 
 - 🔍 Busca de jogos pelo nome
-- 🧠 Detalhes com imagem, descrição, gênero, nota e data de lançamento
+- 🧠 Detalhes com imagem, descrição, gênero e data de lançamento
 - 📝 Sistema de reviews por usuários logados
 - 🎮 Integração completa com a IGDB API
 

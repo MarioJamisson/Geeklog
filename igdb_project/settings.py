@@ -97,5 +97,12 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
+# Redirecionamento após login/cadastro/logout
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/'
+
+# Configurações básicas do allauth
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # ou 'mandatory' se quiser e-mail real
